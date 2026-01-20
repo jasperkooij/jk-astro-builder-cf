@@ -6,8 +6,10 @@
 	id="contact-form"
 	class="bg-base-200 mx-auto max-w-md rounded-lg p-6 shadow-md"
 	data-formspree-url="https://formspree.io/f/myyvpapn"
+	aria-labelledby="contact-heading"
+	novalidate
 >
-	<h2 class="mb-4 text-center font-bold">Let's Talk</h2>
+	<h2 id="contact-heading" class="mb-4 text-center font-bold">Let's Talk</h2>
 
 	<!-- Name Field -->
 	<div class="form-control">
@@ -21,6 +23,8 @@
 			required
 			placeholder="Enter your name"
 			class="input input-bordered w-full"
+			aria-required="true"
+			autocomplete="name"
 		/>
 	</div>
 
@@ -36,6 +40,8 @@
 			required
 			placeholder="Enter your email"
 			class="input input-bordered w-full"
+			aria-required="true"
+			autocomplete="email"
 		/>
 	</div>
 
@@ -50,7 +56,10 @@
 			name="phone"
 			placeholder="Enter your phone number (e.g., +1 123-456-7890)"
 			class="input input-bordered w-full"
+			aria-describedby="phone-help"
+			autocomplete="tel"
 		/>
+		<span id="phone-help" class="label-text-alt mt-1">Optional - U.S. format only</span>
 	</div>
 
 	<!-- Message Field -->
@@ -63,7 +72,9 @@
 			name="message"
 			required
 			placeholder="Enter your message"
-			class="textarea textarea-bordered w-full"></textarea>
+			class="textarea textarea-bordered w-full"
+			aria-required="true"
+			rows="5"></textarea>
 	</div>
 
 	<!-- Verification Question -->
@@ -78,14 +89,18 @@
 			required
 			placeholder="Enter your answer"
 			class="input input-bordered w-full"
+			aria-required="true"
+			aria-describedby="verification-help"
+			autocomplete="off"
 		/>
+		<span id="verification-help" class="label-text-alt mt-1">Anti-spam verification</span>
 	</div>
 
 	<!-- Error Message -->
-	<p id="error-message" class="text-error mt-4 hidden text-center"></p>
+	<p id="error-message" class="text-error mt-4 hidden text-center" role="alert" aria-live="assertive"></p>
 
 	<!-- Success Message -->
-	<p id="success-message" class="text-success mt-4 hidden text-center"></p>
+	<p id="success-message" class="text-success mt-4 hidden text-center" role="status" aria-live="polite"></p>
 
 	<!-- Submit Button -->
 	<button type="submit" class="btn btn-primary mt-6 w-full">Send Message</button>
