@@ -22,3 +22,9 @@ body {
 	background-size: 40px 40px;
 	box-shadow: 0 0 0 1px var(--color-base-100) inset;
 }
+
+/* Builder.io content styles */
+.builder-text > p:first-of-type,
+.builder-text > .builder-paragraph:first-of-type {
+	margin: 0;
+}
