@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = 'Jasper Kooij', description = 'Director of Web Development' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+
+		<!-- Builder.io styles -->
+		<link rel="stylesheet" href="https://cdn.builder.io/api/v1/styles" />
+
+		<script is:inline type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Sun Prairie",
+				"addressRegion": "WI",
+				"postalCode": "53590",
+				"streetAddress": "3467 Swansee Ridge"
+			},
+			"email": "jasperkooij@gmail.com",
+			"image": "https://cdn.builder.io/api/v1/image/assets%2F06e23a278b8341c7a916ce880385fb89%2F7edac098d9ab4d7a916c474e8908cb21",
+			"jobTitle": "Director of Web Development",
+			"name": "Jasper Kooij",
+			"telephone": "+1.608.469.7003",
+			"worksFor": {
+				"@type": "Organization",
+				"name": "Blend Marketing"
+			},
+			"url": "https://jasperkooij.com",
+			"sameAs": [
+				"https://www.linkedin.com/in/jasperkooij/",
+				"https://bsky.app/profile/jasperkooij.com",
+				"https://twitter.com/jasperkooij",
+				"https://discordapp.com/users/jasperkooij",
+				"https://github.com/jasperkooij"
+			]
+		})} />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

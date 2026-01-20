@@ -5,9 +5,14 @@ import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
 import BuilderContent from '../components/BuilderContent.svelte';
 
+// Disable prerendering for this dynamic route
+export const prerender = false;
+
 const apiKey = import.meta.env.PUBLIC_BUILDER_API_KEY;
+const urlPath = Astro.url.pathname || '/';
+
 const title = 'Jasper Kooij - Full Stack Developer';
-const description = 'Full-stack developer and technical team leader with over 25 years at the forefront of web innovation.';
+const description = 'Director of Web Development';
 ---
 
 <BaseLayout title={title} description={description}>
@@ -15,9 +20,7 @@ const description = 'Full-stack developer and technical team leader with over 25
 	<div class="flex min-h-screen items-center justify-center px-4 py-10">
 		<div class="bg-base-100 text-base-content w-full max-w-6xl rounded-xl shadow-lg sm:p-10 md:p-6">
 			<main>
-				<div id="about">
-					<BuilderContent client:load apiKey={apiKey} model="page" urlPath="/" />
-				</div>
+				<BuilderContent client:load apiKey={apiKey} model="page" urlPath={urlPath} />
 
 				<!-- Contact Form Section -->
 				<section class="py-12">
