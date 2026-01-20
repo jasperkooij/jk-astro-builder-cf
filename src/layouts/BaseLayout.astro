@@ -19,10 +19,6 @@ const { title = 'Jasper Kooij', description = 'Director of Web Development' } = 
 		<title>{title}</title>
 		<meta name="description" content={description} />
 
-		<!-- Builder.io styles - preload and async to avoid render blocking -->
-		<link rel="preload" href="https://cdn.builder.io/api/v1/styles" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		<noscript><link rel="stylesheet" href="https://cdn.builder.io/api/v1/styles"></noscript>
-
 		<script is:inline type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "Person",
