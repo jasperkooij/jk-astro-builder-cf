@@ -13,6 +13,19 @@ const urlPath = Astro.url.pathname || '/';
 
 const title = 'Jasper Kooij - Full Stack Developer';
 const description = 'Director of Web Development';
+
+// Fetch Builder.io content server-side to avoid CLS
+let builderContent = null;
+try {
+	const url = `https://cdn.builder.io/api/v2/content/page?apiKey=${apiKey}&url=${urlPath}`;
+	const response = await fetch(url);
+	if (response.ok) {
+		const data = await response.json();
+		builderContent = data.results?.[0];
+	}
+} catch (error) {
+	console.error('Error fetching Builder.io content:', error);
+}
 ---
 
 <BaseLayout title={title} description={description}>
@@ -20,7 +33,7 @@ const description = 'Director of Web Development';
 	<div class="flex min-h-screen items-center justify-center px-4 py-10">
 		<div class="bg-base-100 text-base-content w-full max-w-6xl rounded-xl shadow-lg sm:p-10 md:p-6">
 			<main>
-				<BuilderContent client:load apiKey={apiKey} model="page" urlPath={urlPath} />
+				<BuilderContent client:load apiKey={apiKey} model="page" urlPath={urlPath} initialContent={builderContent} />
 
 				<!-- Contact Form Section -->
 				<section class="py-12">

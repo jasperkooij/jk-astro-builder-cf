@@ -4,22 +4,26 @@
 	export let apiKey: string;
 	export let model: string = 'page';
 	export let urlPath: string = '/';
+	export let initialContent: any = null;
 
-	let content: any = null;
-	let loading = true;
+	let content: any = initialContent;
+	let loading = !initialContent;
 
 	onMount(async () => {
-		try {
-			const url = `https://cdn.builder.io/api/v2/content/${model}?apiKey=${apiKey}&url=${urlPath}`;
-			const response = await fetch(url);
-			if (response.ok) {
-				const data = await response.json();
-				content = data.results?.[0];
+		// Only fetch if we don't have initial content (for client-side navigation)
+		if (!content) {
+			try {
+				const url = `https://cdn.builder.io/api/v2/content/${model}?apiKey=${apiKey}&url=${urlPath}`;
+				const response = await fetch(url);
+				if (response.ok) {
+					const data = await response.json();
+					content = data.results?.[0];
+				}
+			} catch (error) {
+				console.error('Error fetching Builder.io content:', error);
+			} finally {
+				loading = false;
 			}
-		} catch (error) {
-			console.error('Error fetching Builder.io content:', error);
-		} finally {
-			loading = false;
 		}
 	});
 

@@ -10,6 +10,19 @@ import BuilderContent from '../components/BuilderContent.svelte';
 const apiKey = import.meta.env.PUBLIC_BUILDER_API_KEY;
 const title = 'Jasper Kooij - Full Stack Developer';
 const description = 'Full-stack developer and technical team leader with over 25 years at the forefront of web innovation.';
+
+// Fetch Builder.io content server-side to avoid CLS
+let builderContent = null;
+try {
+	const url = `https://cdn.builder.io/api/v2/content/page?apiKey=${apiKey}&url=/`;
+	const response = await fetch(url);
+	if (response.ok) {
+		const data = await response.json();
+		builderContent = data.results?.[0];
+	}
+} catch (error) {
+	console.error('Error fetching Builder.io content:', error);
+}
 ---
 
 <BaseLayout title={title} description={description}>
@@ -18,7 +31,7 @@ const description = 'Full-stack developer and technical team leader with over 25
 		<div class="bg-base-100 text-base-content w-full max-w-6xl rounded-xl shadow-lg sm:p-10 md:p-6">
 			<main>
 				<div id="about">
-					<BuilderContent client:load apiKey={apiKey} model="page" urlPath="/" />
+					<BuilderContent client:load apiKey={apiKey} model="page" urlPath="/" initialContent={builderContent} />
 				</div>
 
 				<!-- Contact Form Section -->
