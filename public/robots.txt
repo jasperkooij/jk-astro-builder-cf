@@ -2,9 +2,5 @@
 User-agent: *
 Allow: /
 
-# Disallow specific paths (optional)
-Disallow: /admin/
-Disallow: /private/
-
-# Specify the sitemap location (optional)
-Sitemap: https://jasperkooij.com/sitemap.xml
+# Specify the sitemap location
+Sitemap: https://jasperkooij.com/sitemap-index.xml
