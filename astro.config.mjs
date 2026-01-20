@@ -10,7 +10,16 @@ import svelte from '@astrojs/svelte';
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    ssr: {
+      external: ['sharp']
+    }
+  },
+
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/noop'
+    }
   },
 
   adapter: cloudflare(),
