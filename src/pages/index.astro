@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
-import BuilderContentStatic from '../components/BuilderContentStatic.astro';
+import BuilderContentHybrid from '../components/BuilderContentHybrid.svelte';
 import FAQSchema from '../components/FAQSchema.astro';
 
 const apiKey = import.meta.env.PUBLIC_BUILDER_API_KEY;
@@ -33,7 +33,7 @@ try {
 		<div class="bg-base-100 text-base-content w-full max-w-6xl rounded-xl shadow-lg sm:p-10 md:p-6">
 			<main>
 				<div id="about">
-					<BuilderContentStatic content={builderContent} />
+					<BuilderContentHybrid client:load apiKey={apiKey} model="page" urlPath="/" initialContent={builderContent} />
 				</div>
 
 				<!-- Contact Form Section -->

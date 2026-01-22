@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:dri.es)",
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "WebSearch"
+    ]
+  }
+}
